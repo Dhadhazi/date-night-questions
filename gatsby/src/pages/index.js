@@ -2,7 +2,8 @@ import * as React from "react"
 
 const IndexPage = () => {
   return (
-   <div>Empty</div>
+    <div>
+    </div>
   )
 }
 
