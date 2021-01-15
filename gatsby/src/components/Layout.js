@@ -31,11 +31,11 @@ export default function Layout({ children }) {
     <>
       <GlobalStyles />
       <SiteBorderStyles>
+        <Title />
         <ContentStyles>
-          <Title />
           {children}
-          <Footer />
         </ContentStyles>
+        <Footer />
       </SiteBorderStyles>
     </>
   );

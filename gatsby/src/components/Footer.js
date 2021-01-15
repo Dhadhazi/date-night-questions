@@ -1,9 +1,20 @@
 import React from 'react';
+import styled from 'styled-components';
+
+const FooterStyle = styled.footer`
+  display: flex;
+  justify-content: center;
+  p{
+    color: var(--black);
+    opacity: 0.5;
+    font-size: 12px;
+  }
+`
 
 export default function Footer() {
   return (
-    <footer>
-      <p className="center">&copy; Date Night Questions {new Date().getFullYear()}</p>
-    </footer>
+    <FooterStyle>
+      <p>Created by Daniel Hadhazi</p>
+    </FooterStyle>
   );
 }
