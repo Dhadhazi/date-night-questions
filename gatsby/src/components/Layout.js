@@ -6,9 +6,9 @@ import { Title } from './Title';
 import Footer from './Footer';
 
 const SiteBorderStyles = styled.div`
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 12rem auto 4rem auto;
-  margin-top: clamp(2rem, 10vw, 12rem);
+  margin-top: clamp(2rem, 8vw, 10rem);
   background: white;
   background-size: 1500px;
   padding: 5px;
