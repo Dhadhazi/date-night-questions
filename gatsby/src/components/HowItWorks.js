@@ -1,9 +1,15 @@
 import React from 'react'
+import styled from 'styled-components'
+
+const HowItWorksStyle = styled.div`
+  width: 100%;
+`
+
 
 export const HowItWorks = () => {
   return (
-    <div>
+    <HowItWorksStyle>
       How it works
-    </div>
+    </HowItWorksStyle>
   )
 }
