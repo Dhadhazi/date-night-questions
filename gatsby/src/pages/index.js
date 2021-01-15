@@ -1,3 +1,4 @@
+import { graphql } from 'gatsby';
 import * as React from "react"
 import styled from "styled-components"
 import { DeckSelector } from "../components/DeckSelector"
@@ -12,13 +13,32 @@ const IndexPageStyle = styled.div`
   }
 `
 
-const IndexPage = () => {
+const IndexPage = ({ data }) => {
   return (
     <IndexPageStyle>
       <HowItWorks />
-      <DeckSelector />
+      <DeckSelector decks={data.decks.nodes} />
     </IndexPageStyle>
   )
 }
 
 export default IndexPage
+
+export const query = graphql`
+query DecksQuery {
+  decks: allSanityDeck {
+    nodes {
+      name
+      description
+      slug {
+        current
+      }
+      category {
+        _id
+        name
+      }
+    }
+  }
+}
+
+`;

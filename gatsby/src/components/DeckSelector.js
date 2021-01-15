@@ -25,8 +25,10 @@ const CategoryChoiceStyle = styled.div`
   }
 `
 
-export const DeckSelector = () => {
+export const DeckSelector = ({decks}) => {
   const [category, setCategory] = useState("all")
+
+  console.log(decks)
 
   function selectCategory(buttonCategory) {
     document.getElementById(`${category}Button`).classList.remove("active-button")
@@ -36,8 +38,7 @@ export const DeckSelector = () => {
   return (
     <DeckSelectorStyle>
       <CategoryChoiceStyle>
-        <button type="button" id="friendButton" onClick={()=> selectCategory("friend")}>Friends</button>
-        <button type="button" id="loverButton" onClick={()=> selectCategory("lover")}>Lover</button>
+        {decks.map(deck => <button type="button" id={`${deck.category.name}Button`} onClick={()=> selectCategory(deck.category.name)} key={deck.category._id}>{deck.category.name}</button>)}
         <button type="button" className="active-button" id="allButton" onClick={()=> selectCategory("all")}>Show All</button>
        </CategoryChoiceStyle>
     </DeckSelectorStyle>
