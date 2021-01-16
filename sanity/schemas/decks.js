@@ -27,6 +27,12 @@ export default {
       to: [{type: 'category'}]
     },
     {
+      name: 'background',
+      title: 'Choose a background pattern',
+      type: 'reference',
+      to: [{type: 'background'}]
+    },
+    {
       name: 'questions',
       title: 'Questions',
       type: 'array',
