@@ -52,6 +52,7 @@ export const DeckSelector = ({ decks }) => {
   console.log(decks);
 
   function goToDeckPage(slug) {
+    console.log(slug)
     navigate(`/${slug}`, {replace: true})
   }
 
@@ -92,7 +93,7 @@ export const DeckSelector = ({ decks }) => {
             category !== "all" ? deck.category.name === category : true
           )
           .map((deck) => (
-            <ShowDeckStyle key={deck._id} onClick={()=>goToDeckPage(deck.slug)}>{deck.name}</ShowDeckStyle>
+            <ShowDeckStyle key={deck._id} onClick={()=>goToDeckPage(deck.slug.current)}>{deck.name}</ShowDeckStyle>
           ))}
       </ShowDeckBoxStyle>
     </DeckSelectorStyle>
