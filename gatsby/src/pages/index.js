@@ -28,6 +28,7 @@ export const query = graphql`
 query DecksQuery {
   decks: allSanityDeck {
     nodes {
+      _id
       name
       description
       slug {
