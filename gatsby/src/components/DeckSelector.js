@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { navigate } from 'gatsby';
 
@@ -56,13 +56,10 @@ const ShowDeckStyle = styled.button`
   }
 `;
 
-
-
 export const DeckSelector = ({ decks }) => {
   const [category, setCategory] = useState("all");
 
-  console.log(decks);
-
+  let categoryList = [...new Set(decks.map(deck => deck.category.name))]
   function goToDeckPage(slug) {
     navigate(`/${slug}`, {replace: true})
   }
@@ -79,14 +76,14 @@ export const DeckSelector = ({ decks }) => {
   return (
     <DeckSelectorStyle>
       <CategoryChoiceStyle>
-        {decks.map((deck) => (
+        {categoryList.map((category, index) => (
           <button
             type="button"
-            id={`${deck.category.name}Button`}
-            onClick={() => selectCategory(deck.category.name)}
-            key={deck.category._id}
+            id={`${category}Button`}
+            onClick={() => selectCategory(category)}
+            key={`category-${index}`}
           >
-            {deck.category.name}
+            {category}
           </button>
         ))}
         <button
