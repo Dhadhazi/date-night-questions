@@ -43,6 +43,9 @@ const GlobalStyles = createGlobalStyle`
     &:hover {
       --cast: 4px;
     }
+    &:focus {
+      outline: none;
+    }
   }
 
   .gatsby-image-wrapper img[src*=base64\\,] {
