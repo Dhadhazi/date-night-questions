@@ -5,7 +5,7 @@ import GlobalStyles from '../styles/GlobalStyles';
 import { Title } from './Title';
 import Footer from './Footer';
 
-const SiteBorderStyles = styled.div`
+const SiteStyles = styled.div`
   max-width: 1200px;
   margin: 12rem auto 4rem auto;
   margin-top: clamp(2rem, 8vw, 10rem);
@@ -31,13 +31,13 @@ export default function Layout({ children }) {
   return (
     <>
       <GlobalStyles />
-      <SiteBorderStyles>
+      <SiteStyles>
         <Title />
         <ContentStyles>
           {children}
         </ContentStyles>
         <Footer />
-      </SiteBorderStyles>
+      </SiteStyles>
     </>
   );
 }
