@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useRef } from "react";
 import { graphql } from "gatsby";
 import styled from "styled-components";
 
@@ -42,6 +42,7 @@ const QuestionsMainBoxStyle = styled.div`
   .mainQuestion {
     position: fixed;
     z-index: 2;
+    box-shadow: none;
   }
   .trashQuestion {
     position: fixed;
@@ -74,38 +75,45 @@ export default function Deck({ data: { deck } }) {
   const [hiddenQuestion, setHiddenQuestion] = useState(1);
   const [mainQuestion, setMainQuestion] = useState(0);
   const [trashQuestion, setTrashQuestion] = useState(-1);
-
-  function nextAnimation(){
-    const mainQuestion = document.getElementById("mainQuestion");
-    mainQuestion.classList.add("moveToTrash")
-    setTimeout(()=>mainQuestion.classList.remove("moveToTrash"), 1100)
+  const mainQuestionElement = useRef()
+  
+  function nextAnimation() {
+    mainQuestionElement.current.classList.add("moveToTrash");
+    setTimeout(() => mainQuestionElement.current.classList.remove("moveToTrash"), 1100);
   }
 
-  function switchQuestions(){
-    if (hiddenQuestion === deck.questions.length-1) {
-      setHiddenQuestion("No more questions in this deck")
-      
-    } else {
-    setHiddenQuestion(prevState => prevState+1)}
-    setMainQuestion(prevState => prevState+1)
-    setTrashQuestion(prevState => prevState+1)
+  function switchQuestions() {
+    setHiddenQuestion((prevState) => prevState + 1);
+    setMainQuestion((prevState) => prevState + 1);
+    setTrashQuestion((prevState) => prevState + 1);
+  }
+
+  function gameOver() {
+    mainQuestionElement.current.classList.add("moveToTrash");
+    document.getElementById("hiddenQuestion").innerText = "There are no more questions in this deck";
   }
 
   function nextQuestion() {
-    nextAnimation()
-    setTimeout(()=>switchQuestions(), 1100)
+    if (mainQuestion < deck.questions.length - 1) {
+      nextAnimation();
+      setTimeout(() => switchQuestions(), 1100);
+    } else {
+      gameOver()
+    }
   }
 
   return (
     <>
       <QuestionsMainBoxStyle>
-        <QuestionBoxStyle
-          bg={deck.background.pattern}
-          id="hiddenQuestion"
-        >
+        <QuestionBoxStyle bg={deck.background.pattern} id="hiddenQuestion">
           {deck.questions[hiddenQuestion]}
         </QuestionBoxStyle>
-        <QuestionBoxStyle bg={deck.background.pattern} className="mainQuestion" id="mainQuestion">
+        <QuestionBoxStyle
+          bg={deck.background.pattern}
+          className="mainQuestion"
+          id="mainQuestion"
+          ref={mainQuestionElement}
+        >
           {deck.questions[mainQuestion]}
         </QuestionBoxStyle>
         <QuestionBoxStyle
@@ -116,7 +124,7 @@ export default function Deck({ data: { deck } }) {
           {trashQuestion === -1 ? "" : deck.questions[trashQuestion]}
         </QuestionBoxStyle>
       </QuestionsMainBoxStyle>
-      <button type="button" onClick={() => nextQuestion()}>
+      <button type="button" onClick={() => nextQuestion()} disabled={false}>
         Next Question
       </button>
       <TitleStyle>Topic: {deck.name}</TitleStyle>
