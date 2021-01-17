@@ -1,6 +1,7 @@
 module.exports = {
   siteMetadata: {
     title: "Date Night Questions",
+    description: "Out of ideas what to talk about? Here you can choose a category and get a lot of conversation starters!"
   },
   plugins: [
     {

@@ -3,6 +3,7 @@ import * as React from "react"
 import styled from "styled-components"
 import { DeckSelector } from "../components/DeckSelector"
 import { HowItWorks } from "../components/HowItWorks"
+import { SEO } from '../components/SEO';
 
 const IndexPageStyle = styled.div`
   display: flex;
@@ -16,6 +17,7 @@ const IndexPageStyle = styled.div`
 const IndexPage = ({ data }) => {
   return (
     <IndexPageStyle>
+      <SEO title="Index" />
       <HowItWorks />
       <DeckSelector decks={data.decks.nodes} />
     </IndexPageStyle>
