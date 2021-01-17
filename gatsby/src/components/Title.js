@@ -28,7 +28,9 @@ const TitleStyle = styled.div`
 
   @media (max-width: 830px) {
     h1 {
+      a {
       font-size: 4rem;
+      }
     }
     h3 {
       font-size: 2rem;
