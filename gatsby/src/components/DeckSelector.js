@@ -12,10 +12,12 @@ const CategoryChoiceStyle = styled.div`
   button {
     border-radius: 0px;
     opacity: 0.85;
-    filter: brightness(80%);
+    filter: brightness(50%);
+    color: var(--black);
     :hover,
     :active,
     :focus {
+      color: white;
       opacity: 1;
       outline: none;
       border: none;
@@ -25,6 +27,7 @@ const CategoryChoiceStyle = styled.div`
   .active-button {
     filter: brightness(110%);
     opacity: 1;
+    color: white;
   }
 `;
 
@@ -42,6 +45,15 @@ const ShowDeckStyle = styled.button`
   display: flex;
   justify-content: center;
   align-items: center;
+  color: var(--white);
+  font-size: 2rem;
+  background-color: var(--red);
+  background-image: ${(props) => props.bg};
+  border-radius: 15px;
+  box-shadow: 6px 8px 3px -2px rgba(0,0,0,0.77);
+  &:hover{
+    transform: scale(1.05)
+  }
 `;
 
 
@@ -92,7 +104,7 @@ export const DeckSelector = ({ decks }) => {
             category !== "all" ? deck.category.name === category : true
           )
           .map((deck) => (
-            <ShowDeckStyle key={deck._id} onClick={()=>goToDeckPage(deck.slug.current)}>{deck.name}</ShowDeckStyle>
+            <ShowDeckStyle key={deck._id} bg={deck.background.pattern} onClick={()=>goToDeckPage(deck.slug.current)}>{deck.name}</ShowDeckStyle>
           ))}
       </ShowDeckBoxStyle>
     </DeckSelectorStyle>

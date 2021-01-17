@@ -31,6 +31,9 @@ query DecksQuery {
       _id
       name
       description
+      background {
+        pattern
+      }
       slug {
         current
       }
